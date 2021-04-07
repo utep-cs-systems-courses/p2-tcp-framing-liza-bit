@@ -6,6 +6,7 @@ from lib import params
 import framed_socket
 import my_io
 
+'''
 switchesVarDefaults = (
     (('-s', '--server'), 'server', "127.0.0.1:50001"),
     (('-d', '--delay'), 'delay', "0"),
@@ -13,6 +14,7 @@ switchesVarDefaults = (
     (('-o', '--outputf'), 'outputf', "text.txt"),
     (('-?', '--usage'), "usage", False),     # booelan (set if present)
     )
+'''
 
 progname = "tcp_client"
 #paramMap = params.parseParams(switchesVarDefaults)
@@ -24,9 +26,9 @@ progname = "tcp_client"
 
 
 try:    # tries to get the necessary parameters
-    tcp_client = sys.argv[1]
+    clientFile = sys.argv[1]
     serverHost, serverFile = re.split(":", sys.argv[2])
-    serverport = 50001
+    serverPort = 50001
 
 except:
     my_io.myPrint("Bad param format: '%s'. Should be $ ./tcp_server Send {clientFile} {host:serverFile} \n" % sys.argv)
@@ -60,14 +62,14 @@ for res in socket.getaddrinfo(serverHost, serverPort, socket.AF_UNSPEC, socket.S
 if s is None:
     my_io.myPrint('Could not open socket\n')
     sys.exit(1)
-
+'''
 delay = float(paramMap['delay'])    # delay before reading, default = 0s
 if delay != 0:
     print(f"Sleeping for {delay}s")
     time.sleep(delay)
     print("Done sleeping")
-
-fs = framed_socket.socketFramed(s)     # a new framed socket obj
+'''
+fs = framed_socket.SocketFramed(s)     # a new framed socket obj
 
 fs.sendMessage(sys.argv[0].encode())
 fs.sendMessage(serverFile.encode())     # sent the file to be saved on server side
