@@ -30,4 +30,4 @@ s.listen(1)     # allow only one outstanding request
 
 while True:
     conn, addr = s.accept()     # wait until incoming connection request (and accept it)
-    Worker.Worker(conn, addr).start
+    Worker.Worker(conn, addr).start()
