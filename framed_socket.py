@@ -3,7 +3,7 @@
 class SocketFramed:
 
     def __init__(self, connectedSocket):     # to make a new framed socket
-        self.cs = connetedSocket
+        self.cs = connectedSocket
         self.buff = ""
 
     def sendMessage(self, message):     # sends an out of band framed message
@@ -42,8 +42,8 @@ class SocketFramed:
                 self.buff = self.cs.recv(100).decode()
 
             msg += self.buff[0]
-            self.buff = selfself.buff[1:]
+            self.buff = self.buff[1:]
 
-            return msg
+        return msg
     
     
